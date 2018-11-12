@@ -22,12 +22,12 @@
                 </a>
                 <ul class="treeview-menu" style="display: block;">
                     <li>
-                        <a href="{{ route('employee.index') }}">
+                        <a href="{{ route('user.index') }}">
                             <i class="fa fa-circle-o"></i> Danh sách user
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('employee.create') }}">
+                        <a href="{{ route('user.getCreate') }}">
                         <i class="fa fa-circle-o"></i> Thêm user </a>
                     </li>
                 </ul>
