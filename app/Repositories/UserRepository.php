@@ -10,13 +10,20 @@ class UserRepository
     {
         $user = new User;
         $user->email = $data['email'];
-        $user->password = $data['password'];
+        $user->password = bcrypt($data['password']);
         $user->fullname = $data['fullname'];
+        $user->status = $data['status'];
+        $user->role = $data['role'];
 
         if (!$user->save()) {
             return null;
         }
         return $user;
+    }
+
+    public function find($id)
+    {
+        return User::find($id);
     }
 
     public function getByEmail($email = null)
@@ -45,4 +52,25 @@ class UserRepository
 
         return $query;
     }
+
+    public function update(User $user, $data)
+    {
+        if (isset($data['fullname'])) {
+            $user->fullname = $data['fullname'];
+        }
+        if (isset($data['email'])) {
+            $user->email = $data['email'];
+        }
+        if (isset($data['role'])) {
+            $user->role = $data['role'];
+        }
+        if (isset($data['status'])) {
+            $user->status = $data['status'];
+        }
+        if ($user->save()) {
+            return $user;
+        }
+        return false;
+    }
+
 }

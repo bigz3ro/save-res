@@ -37,10 +37,16 @@ class AuthController extends Controller
             $password = $request->input('password');
 
             if( Auth::attempt(['email' => $email, 'password' => $password])) {
-                return redirect()->route('employee.index');
+                return redirect()->route('user.index');
             } else {
                 return redirect()->back()->withInput()->with(['error' => 'Email hoặc mật khẩu không đúng']);
             }
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->route('login');
     }
 }

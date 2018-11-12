@@ -15,6 +15,11 @@
                     <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
                     <span class="hidden-xs">Alexander Pierce</span>
                     </a>
+                    <ul class="dropdown-menu">
+                      <li class="user-footer">
+                          <a href="{{ route('logout') }}"><span class="fa fa-sign-out"></span>Đăng xuất</a>
+                      </li>
+                    </ul>
                 </li>
             </ul>
         </div>

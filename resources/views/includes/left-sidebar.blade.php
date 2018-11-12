@@ -5,7 +5,7 @@
                 <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Nhân sự Trind</p>
+                <p>{{ Auth::user()->fullname }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -14,7 +14,7 @@
             <li class="header">MAIN NAVIGATION</li>
 
             <li class="active treeview">
-                <a href="{{ route('employee.index') }}">
+                <a href="{{ route('user.index') }}">
                     <i class="fa fa-user"></i> <span>Users</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -29,6 +29,26 @@
                     <li>
                         <a href="{{ route('user.getCreate') }}">
                         <i class="fa fa-circle-o"></i> Thêm user </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="active treeview">
+                <a href="{{ route('role.index') }}">
+                    <i class="fa fa-user"></i> <span>Roles</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: block;">
+                    <li>
+                    <a href="{{ route('role.index') }}">
+                            <i class="fa fa-circle-o"></i> Danh sách role
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('role.getCreate') }}">
+                        <i class="fa fa-circle-o"></i> Thêm role </a>
                     </li>
                 </ul>
             </li>
