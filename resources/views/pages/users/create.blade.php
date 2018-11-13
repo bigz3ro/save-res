@@ -8,7 +8,7 @@
     </section>
     <section class="content">
       <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-12">
               <div class="box">
                   @include('includes.message')
                   <div class="clearfix"></div>
@@ -57,7 +57,7 @@
 
                           <div class="col-sm-8">
                             <input type="password" name="confirm_password" class="form-control" placeholder="Nhập lại mật khẩu">
-                            @if($errors->has('confirm_pasword'))
+                            @if($errors->has('confirm_password'))
                               <p style="color:red">{{$errors->first('confirm_password')}}</p>
                             @endif
                           </div>
@@ -79,8 +79,8 @@
                       </div>
                       <!-- /.box-body -->
                       <div class="box-footer">
-                        <a href="{{ route('user.getCreate') }}" class="btn btn-default">Hủy</a>
-                        <button type="submit" class="btn btn-info pull-right">Tạo mới</button>
+                        <button type="submit" class="btn btn-info">Tạo mới</button>
+                        <a href="{{ route('user.getCreate') }}" class="pull-right btn btn-default">Hủy</a>
                       </div>
                       <!-- /.box-footer -->
                     </form>

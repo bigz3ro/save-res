@@ -8,7 +8,7 @@
     </section>
     <section class="content">
       <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-12">
               <div class="box">
                   @include('includes.message')
                   <div class="clearfix"></div>

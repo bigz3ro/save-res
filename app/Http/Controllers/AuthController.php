@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\OrderShipped;
 use Validator;
+use Illuminate\Support\Facades\Mail;
 use Auth;
 
 class AuthController extends Controller
@@ -46,7 +48,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        // Mail::to(Auth::user()->email)->send(new OrderShipped());
         Auth::logout();
         return redirect()->route('login');
+    }
+
+    public function forgotPassword()
+    {
+
+        return view('auth.passwords.email');
     }
 }

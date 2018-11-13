@@ -8,7 +8,7 @@
     </section>
     <section class="content">
       <div class="row">
-          <div class="col-xs-8">
+          <div class="col-xs-12">
             <div class="box">
               @include('includes.message')
               <div class="clearfix"></div>
@@ -23,9 +23,9 @@
                   {!! csrf_field() !!}
                   <div class="box-body">
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Role</label>
+                      <label class="col-sm-2 control-label">Role</label>
 
-                      <div class="col-sm-9">
+                      <div class="col-sm-10">
                         <input type="text" name="name" class="form-control" placeholder="Tên role">
                         @if($errors->has('role'))
                           <p style="color:red">{{$errors->first('role')}}</p>
@@ -33,9 +33,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Tên hiển thị</label>
+                      <label class="col-sm-2 control-label">Tên hiển thị</label>
 
-                      <div class="col-sm-9">
+                      <div class="col-sm-10">
                         <input type="text" name="display_name" class="form-control" placeholder="Tên hiển thị">
                         @if($errors->has('display_name'))
                           <p style="color:red">{{ $errors->first('display_name') }}</p>
@@ -43,9 +43,9 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Mô tả</label>
+                      <label class="col-sm-2 control-label">Mô tả</label>
 
-                      <div class="col-sm-9">
+                      <div class="col-sm-10">
                         <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
                         @if($errors->has('description'))
                           <p style="color:red">{{ $errors->first('description') }}</p>
@@ -53,9 +53,8 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-3 control-label">Chọn quyền</label>
-
-                      <div class="col-sm-9">
+                      <label class="col-sm-2 control-label">Chọn quyền</label>
+                      <div class="col-sm-10">
                           <div class="row">
                             @foreach($permissions as $i => $value)
                             @if ($i%2 == 0)
@@ -82,8 +81,11 @@
                   </div>
                   <!-- /.box-body -->
                   <div class="box-footer">
-                    <a href="{{ route('role.getCreate') }}" class="btn btn-default">Hủy</a>
-                    <button type="submit" class="btn btn-info pull-right">Tạo mới</button>
+                    <div></div>
+                    <div>
+                      <button type="submit" class="btn btn-info">Tạo mới</button>
+                      <a href="{{ route('role.getCreate') }}" class="btn btn-default pull-right">Hủy</a>
+                    </div>
                   </div>
                   <!-- /.box-footer -->
                 </form>

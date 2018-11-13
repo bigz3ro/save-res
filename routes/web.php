@@ -55,3 +55,11 @@ Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
 Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit');
 Route::post('role/delete', 'RoleController@delete')->name('role.delete');
 
+//Organizations
+Route::get('organization/index', 'OrganizationController@index')->name('organization.index');
+Route::get('organization/create', 'OrganizationController@getCreate')->name('organization.getCreate');
+Route::post('organization/create', 'OrganizationController@postCreate')->name('organization.postCreate');
+Route::get('organization/edit/{id}', 'OrganizationController@getEdit')->name('organization.getEdit');
+Route::post('organization/edit', 'OrganizationController@postEdit')->name('organization.postEdit');
+Route::post('organization/delete', 'OrganizationController@delete')->name('organization.delete');
+

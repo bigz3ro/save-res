@@ -54,7 +54,7 @@
             </li>
 
             <li class="active treeview">
-                <a href="{{ route('employee.index') }}">
+                <a href="{{ route('organization.index') }}">
                     <i class="fa fa-university"></i> <span>Doanh nghiệp</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -62,12 +62,12 @@
                 </a>
                 <ul class="treeview-menu" style="display: block;">
                     <li>
-                        <a href="{{ route('employee.index') }}">
+                        <a href="{{ route('organization.index') }}">
                             <i class="fa fa-circle-o"></i> Danh sách doanh nghiệp
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('employee.create') }}">
+                        <a href="{{ route('organization.getCreate') }}">
                         <i class="fa fa-circle-o"></i> Thêm doanh nghiệp</a>
                     </li>
                 </ul>
