@@ -29,8 +29,11 @@ Route::get('/employee/index', 'EmployeeController@index')->name('employee.index'
 // Route::get('register', 'Auth\RegisterController@getRegister');
 // Route::post('register', 'Auth\RegisterController@postRegister');
 Route::get('login', [ 'as' => 'login', 'uses' => 'AuthController@getLogin']);
-Route::post('login','AuthController@postLogin')->name('auth.postLogin');
-Route::get('logout', [ 'as' => 'logout', 'uses' => 'AuthController@logout']);
+Route::post('post-login', ['as' => 'auth.postLogin', 'uses' => 'AuthController@postLogin']);
+Route::get('logout', [ 'as' => 'logout', 'uses' => 'AuthController@logout'])->middleware('auth');
+// Route::get('forgot-password', ['as' => 'forgotPassword', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm']);
+// Route::post('reset/send-email', ['as' => 'send-email', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail']);
+
 // ---------------
 
 //User route
@@ -51,3 +54,4 @@ Route::post('role/post-create', 'RoleController@postCreate')->name('role.postCre
 Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
 Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit');
 Route::post('role/delete', 'RoleController@delete')->name('role.delete');
+
