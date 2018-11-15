@@ -12,8 +12,8 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ Auth::check() ?: Auth::user()->getAvatarUrl() }}" class="user-image" alt="User Image">
-                    <span class="hidden-xs">{{ Auth::check() ?: Auth::user()->fullname }}</span>
+                    <img src="{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}" class="user-image" alt="User Image">
+                    <span class="hidden-xs">{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}</span>
                     </a>
                     <ul class="dropdown-menu">
                       <li class="user-footer">
