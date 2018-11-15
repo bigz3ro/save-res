@@ -42,12 +42,10 @@
                             <td>{{ $organization->name }}</td>
                             <td>{{ $organization->address }}</td>
                             <td>{{ $organization->phone }}</td>
-                            <td>{{ $organization->start_time }}</td>
+                            <td>{{ date('d/m/Y', strtotime($organization->start_time)) }}</td>
                             <td class="text-right">
-                              <td class="text-right">
-                                <a class="btn btn-sm btn-default" href="{{ route('organization.getEdit', ['id' => $organization->id]) }}"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-sm btn-default" onclick="deleteOrganization({{ $organization->id }})"><i class="fa fa-trash"></i></a>
-                              </td>
+                              <a class="btn btn-sm btn-default" href="{{ route('organization.getEdit', ['id' => $organization->id]) }}"><i class="fa fa-pencil"></i></a>
+                              <a class="btn btn-sm btn-default" onclick="deleteOrganization({{ $organization->id }})"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach
@@ -75,7 +73,7 @@
   <script>
     function deleteOrganization(id) {
       $('#delete-organization #organization_id').val(id);
-      confirmModal.showConfirm('Bạn có chắc chắn muốn xóa người này không ?', 'danger', function () {
+      confirmModal.showConfirm('Bạn có chắc chắn muốn xóa doanh nghiệp này không ?', 'danger', function () {
         $('#delete-organization').submit();
       });
     }

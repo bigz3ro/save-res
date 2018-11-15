@@ -14,6 +14,9 @@ class UserRepository
         $user->fullname = $data['fullname'];
         $user->status = $data['status'];
         $user->role = $data['role'];
+        if ($data['avatar']) {
+            $user->avatar = $data['avatar'];
+        }
 
         if (!$user->save()) {
             return null;
@@ -66,6 +69,9 @@ class UserRepository
         }
         if (isset($data['status'])) {
             $user->status = $data['status'];
+        }
+        if (isset($data['avatar'])) {
+            $user->avatar = $data['avatar'];
         }
         if ($user->save()) {
             return $user;

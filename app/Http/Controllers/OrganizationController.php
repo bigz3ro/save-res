@@ -49,11 +49,12 @@ class OrganizationController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $startTime = Carbon::createFromFormat('d/m/Y', $request->input('start_time'));
         $data = [
             'name' => $request->input('name'),
             'address' => $request->input('address'),
             'phone' => $request->input('phone'),
-            'start_time' => $request->input('start_time'),
+            'start_time' => $startTime
         ];
 
         $newOrganization = $this->organizationRepo->create($data);

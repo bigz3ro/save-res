@@ -25,17 +25,17 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Role</label>
 
-                      <div class="col-sm-10">
+                      <div class="col-sm-6">
                         <input type="text" name="name" class="form-control" placeholder="Tên role">
-                        @if($errors->has('role'))
-                          <p style="color:red">{{$errors->first('role')}}</p>
+                        @if($errors->has('name'))
+                          <p style="color:red">{{$errors->first('name')}}</p>
                         @endif
                       </div>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Tên hiển thị</label>
 
-                      <div class="col-sm-10">
+                      <div class="col-sm-6">
                         <input type="text" name="display_name" class="form-control" placeholder="Tên hiển thị">
                         @if($errors->has('display_name'))
                           <p style="color:red">{{ $errors->first('display_name') }}</p>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Mô tả</label>
 
-                      <div class="col-sm-10">
+                      <div class="col-sm-6">
                         <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
                         @if($errors->has('description'))
                           <p style="color:red">{{ $errors->first('description') }}</p>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                       <label class="col-sm-2 control-label">Chọn quyền</label>
-                      <div class="col-sm-10">
+                      <div class="col-sm-6">
                           <div class="row">
                             @foreach($permissions as $i => $value)
                             @if ($i%2 == 0)

@@ -63,3 +63,27 @@ Route::get('organization/edit/{id}', 'OrganizationController@getEdit')->name('or
 Route::post('organization/edit', 'OrganizationController@postEdit')->name('organization.postEdit');
 Route::post('organization/delete', 'OrganizationController@delete')->name('organization.delete');
 
+//Employee
+Route::get('employee/index', 'EmployeeController@index')->name('employee.index');
+Route::get('employee/create', 'EmployeeController@getCreate')->name('employee.getCreate');
+Route::post('employee/create', 'EmployeeController@postCreate')->name('employee.postCreate');
+Route::get('employee/edit/{id}', 'EmployeeController@getEdit')->name('employee.getEdit');
+Route::post('employee/edit', 'EmployeeController@postEdit')->name('employee.postEdit');
+Route::post('employee/delete', 'EmployeeController@delete')->name('employee.delete');
+
+//Table
+Route::get('table/index', 'TableController@index')->name('table.index');
+Route::get('table/create', 'TableController@getCreate')->name('table.getCreate');
+Route::post('table/create', 'TableController@postCreate')->name('table.postCreate');
+Route::get('table/edit/{id}', 'TableController@getEdit')->name('table.getEdit');
+Route::post('table/edit', 'TableController@postEdit')->name('table.postEdit');
+Route::post('table/delete', 'TableController@delete')->name('table.delete');
+
+
+//Button
+Route::get('button/index', 'ButtonController@index')->name('button.index');
+Route::get('button/create', 'ButtonController@getCreate')->name('button.getCreate');
+Route::post('button/create', 'ButtonController@postCreate')->name('button.postCreate');
+Route::get('button/edit/{id}', 'ButtonController@getEdit')->name('button.getEdit');
+Route::post('button/edit', 'ButtonController@postEdit')->name('button.postEdit');
+Route::post('button/delete', 'ButtonController@delete')->name('button.delete');

@@ -1,3 +1,6 @@
 .navbar-nav>.user-menu>.dropdown-menu {
     width: 165px;
 }
+.block-class {
+    display: block;
+}

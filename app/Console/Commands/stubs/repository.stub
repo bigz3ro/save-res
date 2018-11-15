@@ -1,0 +1,38 @@
+<?php
+
+namespace DummyNamespace;
+
+/**
+ * Class DummyClass.
+ */
+class DummyClass
+{
+    /**
+     * @return string
+     *  Return the model
+     */
+    public function find($id)
+    {
+
+    }
+
+    public function paginate($options = [], $take = 10)
+    {
+
+    }
+
+    public function query($options = [])
+    {
+
+    }
+
+    public function create($data = [])
+    {
+
+    }
+
+    public function update()
+    {
+
+    }
+}

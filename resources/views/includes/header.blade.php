@@ -12,7 +12,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <img src="{{ asset('dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
+                    <img src="{{ Auth::user()->getAvatarUrl() }}" class="user-image" alt="User Image">
                     <span class="hidden-xs">{{ Auth::user()->fullname }}</span>
                     </a>
                     <ul class="dropdown-menu">

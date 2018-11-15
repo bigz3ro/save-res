@@ -41,14 +41,11 @@
                             <td>{{ $user->fullname }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                              {{ date('d-m-Y', strtotime($user->created_at)) }}
+                              {{ date('d/m/Y', strtotime($user->created_at)) }}
                             </td>
-                            {{-- <td><span class="label label-success">Approved</span></td> --}}
                             <td class="text-right">
-                              <td class="text-right">
-                                <a class="btn btn-sm btn-default" href="{{ route('user.getEdit', ['id' => $user->id]) }}"><i class="fa fa-pencil"></i></a>
-                                <a class="btn btn-sm btn-default" onclick="deleteUser({{ $user->id }})"><i class="fa fa-trash"></i></a>
-                              </td>
+                              <a class="btn btn-sm btn-default" href="{{ route('user.getEdit', ['id' => $user->id]) }}"><i class="fa fa-pencil"></i></a>
+                              <a class="btn btn-sm btn-default" onclick="deleteUser({{ $user->id }})"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach

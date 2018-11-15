@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFieldRoleToUsersTable extends Migration
+class AddFieldRoleAvatarToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,7 @@ class AddFieldRoleToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->integer('role')->nullable();
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddFieldRoleToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('role');
+            $table->dropColumn('avatar');
         });
     }
 }

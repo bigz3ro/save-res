@@ -29,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getAvatarUrl()
+    {
+        if ($this->avatar) {
+            return env('STATIC_HTTP_ROOT') . '/users/'  . $this->avatar;
+        }
+        return asset('images/avatar.jpg');
+    }
 }

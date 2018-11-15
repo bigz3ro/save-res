@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use App\Repositories\ImageRepository;
 use Validator;
 use App\Role;
 use DB;
@@ -11,10 +12,11 @@ use Auth;
 
 class UserController extends Controller
 {
-    public function __construct(UserRepository $userRepo)
+    public function __construct(UserRepository $userRepo, ImageRepository $imageRepo)
     {
         $this->middleware('auth');
         $this->userRepo = $userRepo;
+        $this->imageRepo = $imageRepo;
     }
 
     public function index(Request $request)
@@ -56,14 +58,22 @@ class UserController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $avatar = null;
+        if ($request->avatar) {
+            $avatar = $this->imageRepo->upload($request, 'avatar', config('user.max_image_width'), null, 'avatars/');
+            if ($avatar['status'] == "error") {
+                return redirect()->back()->withInput()->with(['error' => $avatar['message']]);
+            }
+        }
+
         $data = [
             'email' => $request->input('email'),
             'password' => $request->input('password'),
             'fullname' => $request->input('fullname'),
             'role' => $request->input('role'),
-            'status' => config('user_status.status.active')
+            'status' => config('user_status.status.active'),
+            'avatar' => $avatar['data']['name']
         ];
-
         $newUser = $this->userRepo->create($data);
         if (!$newUser) {
             return redirect()->back()->withInput()->with(['error' => 'Tạo người dùng không thành công']);

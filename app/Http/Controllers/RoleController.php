@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Repositories\RoleRepository;
 use App\Permission;
 use App\Role;
+use Validator;
 use DB;
 
 class RoleController extends Controller
@@ -31,20 +32,33 @@ class RoleController extends Controller
 
     public function postCreate(Request $request)
     {
-        $this->validate($request, [
+        $rules = [
             'name' => 'required|unique:roles,name',
-            'display_name' => 'required',
-            'description' => 'required',
-            'permission' => 'required',
-        ]);
-        $role = new Role();
-        $role->name = $request->input('name');
-        $role->display_name = $request->input('display_name');
-        $role->description = $request->input('description');
-        $role->save();
+            'display_name' => 'required|unique:roles,display_name',
+            'description' => '',
+        ];
+        $messages = [
+            'name.required' => 'Tên role là trường bắt buộc',
+            'display_name.required' => 'Tên hiển thị role là trường bắt buộc',
+            'name.unique' => 'Role đã tồn tại',
+            'display_name.unique' => 'Tên hiển thị đã tồn tại',
+        ];
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-        foreach ($request->input('permission') as $key => $value) {
-            $role->attachPermission($value);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $data = [
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+            'description' => $request->description
+        ];
+        $role = $this->roleRepo->create($data);
+
+        if ($role) {
+            foreach ($request->input('permission') as $key => $value) {
+                $role->attachPermission($value);
+            }
         }
 
         return redirect()->route('role.index')->with('success','Tạo role mới thành công');
@@ -52,8 +66,8 @@ class RoleController extends Controller
 
     public function getEdit(Request $request)
     {
-        $id = $request->id;
-        $role = Role::find($id);
+        $id = intval($request->id);
+        $role = $this->roleRepo->find($id);
         if (!$role) {
             return redirect()->route('role.index')->with('error', 'Role này không tồn tại');
         }
@@ -64,27 +78,34 @@ class RoleController extends Controller
 
     public function postEdit(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'display_name' => 'required',
-            'description' => 'required',
-            'permission' => 'required',
-        ]);
+        $rules = [
+            'name' => 'required|unique:roles,name',
+            'display_name' => 'required|unique:roles,display_name',
+            'description' => '',
+        ];
+        $messages = [
+            'name.required' => 'Tên role là trường bắt buộc',
+            'display_name.required' => 'Tên hiển thị role là trường bắt buộc',
+            'name.unique' => 'Role đã tồn tại',
+            'display_name.unique' => 'Tên hiển thị đã tồn tại',
+        ];
 
-        $id = $request->id;
-        $role = Role::find($id);
+        $id = intval($request->id);
+        $role = $this->roleRepo->find($id);
         if (!$role) {
             return redirect()->back()->with('error', 'Role này không tồn tại');
         }
-        $role->name = $request->input('name');
-        $role->display_name = $request->input('display_name');
-        $role->description = $request->input('description');
-        $role->save();
-
-        DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
-
-        foreach ($request->input('permission') as $key => $value) {
-            $role->attachPermission($value);
+        $data = [
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+            'description' => $request->description
+        ];
+        $role = $this->roleRepo->update($role, $data);
+        if ($role) {
+            DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
+            foreach ($request->input('permission') as $key => $value) {
+                $role->attachPermission($value);
+            }
         }
 
         return redirect()->route('role.index')->with('success','Cập nhật thành công');
@@ -93,12 +114,12 @@ class RoleController extends Controller
 
     public function delete(Request $request)
     {
-        $id = $request->id;
-        $role = Role::find($id);
+        $id = intval($request->id);
+        $role = $this->roleRepo->find($id);
         if (!$role) {
             return redirect()->back()->with('error', 'Role này không tồn tại');
         }
-        DB::table("roles")->where('id',$id)->delete();
+        DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('role.index')->with('success','Xóa thành công');
     }
 

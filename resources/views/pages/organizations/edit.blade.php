@@ -57,7 +57,7 @@
                           <label class="col-sm-3 control-label">Ngày thành lập</label>
 
                           <div class="col-sm-9">
-                              <input type="text" name="start_time" @if($organization->start_time) value="{{  date('dd/mm/yyyy', strtotime($organization->start_time)) }}" @endif id="datepicker" class="form-control" placeholder="Ngày thành lập">
+                              <input type="text" name="start_time" @if($organization->start_time) value="{{  date('d/m/Y', strtotime($organization->start_time)) }}" @endif id="datepicker" class="form-control" placeholder="Ngày thành lập">
                               @if($errors->has('start_time'))
                                 <p style="color:red">{{$errors->first('start_time')}}</p>
                               @endif
@@ -83,7 +83,7 @@
   <script>
     $('#datepicker').datepicker({
       autoclose: true,
-      format: 'dd/mm/yyyy',
+      format: 'd/m/Y',
     })
   </script>
 @endsection

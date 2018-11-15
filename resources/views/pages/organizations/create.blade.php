@@ -25,7 +25,7 @@
                         <div class="form-group">
                           <label class="col-sm-2 control-label">Tên doanh nghiệp</label>
 
-                          <div class="col-sm-10">
+                          <div class="col-sm-6">
                             <input type="text" name="name" value="{{ old('name') }}"" class="form-control"placeholder="Tên doanh nghiệp">
                             @if($errors->has('name'))
                               <p style="color:red">{{$errors->first('name')}}</p>
@@ -35,7 +35,7 @@
                         <div class="form-group">
                           <label class="col-sm-2 control-label">Địa chỉ</label>
 
-                          <div class="col-sm-10">
+                          <div class="col-sm-6">
                             <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Địa chỉ">
                             @if($errors->has('address'))
                               <p style="color:red">{{$errors->first('address')}}</p>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                           <label class="col-sm-2 control-label">Số điện thoại</label>
 
-                          <div class="col-sm-10">
+                          <div class="col-sm-6">
                             <input type="text" name="phone" class="form-control" placeholder="Số điện thoại">
                             @if($errors->has('phone'))
                               <p style="color:red">{{$errors->first('phone')}}</p>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group date">
                           <label class="col-sm-2 control-label">Ngày thành lập</label>
-                          <div class="col-sm-10">
+                          <div class="col-sm-6">
                             <input type="text" name="start_time" id="datepicker" class="form-control" placeholder="Ngày thành lập">
                             @if($errors->has('start_time'))
                               <p style="color:red">{{$errors->first('start_time')}}</p>
@@ -81,7 +81,8 @@
 @section('js')
   <script>
     $('#datepicker').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'd/m/yyyy'
     })
   </script>
 @endsection
