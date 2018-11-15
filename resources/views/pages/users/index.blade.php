@@ -22,7 +22,6 @@
           </div>
           <div class="row">
               <div class="col-xs-12">
-                <div class="box">
                   <div class="clearfix"></div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
@@ -53,7 +52,6 @@
                       </table>
                     </div>
                   <!-- /.box-body -->
-                </div>
                 <!-- /.box -->
               </div>
           </div>
