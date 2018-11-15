@@ -13,7 +13,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}" class="user-image" alt="User Image">
-                    <span class="hidden-xs">{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}</span>
+                    <span class="hidden-xs">{{ Auth::check() ? Auth::user()->fullname : null }}</span>
                     </a>
                     <ul class="dropdown-menu">
                       <li class="user-footer">

@@ -5,7 +5,7 @@
                 <img src="{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}</p>
+                <p>{{ Auth::check() ? Auth::user()->fullname : null }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
