@@ -15,45 +15,52 @@
           <div class="box-header with-border">
             <h3 class="box-title">Tạo role</h3>
           </div>
-          <form class="form-horizontal" method="post" action="{{ route('role.postCreate') }}">
+          <form method="post" action="{{ route('role.postCreate') }}">
             {!! csrf_field() !!}
             <div class="box-body">
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Role</label>
-                <div class="col-sm-6">
-                  <input type="text" name="name" class="form-control" placeholder="Tên role">
-                  @if($errors->has('name'))
-                    <p style="color:red">{{$errors->first('name')}}</p>
-                  @endif
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Role</label>
+                  <div>
+                    <input type="text" name="name" class="form-control" placeholder="Tên role">
+                    @if($errors->has('name'))
+                      <p style="color:red">{{$errors->first('name')}}</p>
+                    @endif
+                  </div>
                 </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Tên hiển thị</label>
-                <div class="col-sm-6">
-                  <input type="text" name="display_name" class="form-control" placeholder="Tên hiển thị">
-                  @if($errors->has('display_name'))
-                    <p style="color:red">{{ $errors->first('display_name') }}</p>
-                  @endif
-                </div>
-              </div>
 
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Mô tả</label>
-                <div class="col-sm-6">
-                  <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
-                  @if($errors->has('description'))
-                    <p style="color:red">{{ $errors->first('description') }}</p>
-                  @endif
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Tên hiển thị</label>
+                  <div>
+                    <input type="text" name="display_name" class="form-control" placeholder="Tên hiển thị">
+                    @if($errors->has('display_name'))
+                      <p style="color:red">{{ $errors->first('display_name') }}</p>
+                    @endif
+                  </div>
                 </div>
               </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">Chọn quyền</label>
-                <div class="col-sm-6">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Mô tả</label>
+                  <div>
+                    <textarea name="description" class="form-control" placeholder="Mô tả"></textarea>
+                    @if($errors->has('description'))
+                      <p style="color:red">{{ $errors->first('description') }}</p>
+                    @endif
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="control-label">Chọn quyền</label>
+                  <div>
                     <div class="row">
                       @foreach($permissions as $i => $value)
                       @if ($i%2 == 0)
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="checkbox">
                           <label>
                             <input type="checkbox" name="permission[]" value="{{ $value->id }}"> {{$value->display_name}}
@@ -61,7 +68,7 @@
                         </div>
                       </div>
                       @else
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <div class="checkbox">
                           <label>
                             <input type="checkbox" name="permission[]" value="{{ $value->id }}"> {{$value->display_name}}
@@ -71,6 +78,7 @@
                       @endif
                       @endforeach
                     </div>
+                  </div>
                 </div>
               </div>
             </div>

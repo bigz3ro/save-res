@@ -4,3 +4,6 @@
 .block-class {
     display: block;
 }
+label {
+    font-weight: 600 !important;
+}

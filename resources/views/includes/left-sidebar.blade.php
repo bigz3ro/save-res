@@ -2,7 +2,7 @@
     <section class="sidebar">
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}" class="img-circle" alt="User Image">
+                <img style="height: 45px" src="{{ Auth::check() ? Auth::user()->getAvatarUrl() : null }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::check() ? Auth::user()->fullname : null }}</p>

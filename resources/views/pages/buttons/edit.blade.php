@@ -15,14 +15,13 @@
           <div class="box-header with-border">
             <h3 class="box-title">Chỉnh sửa thông tin</h3>
           </div>
-
-          <form class="form-horizontal" method="post" action="{{ route('button.postEdit') }}">
+          <form method="post" action="{{ route('button.postEdit') }}">
             {!! csrf_field() !!}
             <input type="hidden" name="id" value="{{ $button->id }}">
             <div class="box-body">
               <div class="form-group">
-                <label class="col-sm-2 control-label">Serial Number</label>
-                <div class="col-sm-6">
+                <label class="control-label">Serial Number</label>
+                <div>
                   <input type="text" name="serial_number" value="{{ $button->serial_number }}" class="form-control" placeholder="Serial number">
                   @if($errors->has('serial_number'))
                     <p style="color:red">{{$errors->first('serial_number')}}</p>
@@ -30,8 +29,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">Command</label>
-                <div class="col-sm-6">
+                <label class="control-label">Command</label>
+                <div>
                   <input type="text" name="command" value="{{ $button->command }}" class="form-control" placeholder="Command">
                   @if($errors->has('command'))
                     <p style="color:red">{{$errors->first('command')}}</p>
@@ -40,8 +39,8 @@
               </div>
             </div>
             <div class="box-footer">
-              <a href="{{ url()->previous() }}" class="btn btn-default">Quay lại</a>
-              <button type="submit" class="btn btn-info pull-right">Lưu</button>
+              <a href="{{ url()->previous() }}" class="btn btn-default pull-right">Quay lại</a>
+              <button type="submit" class="btn btn-info">Lưu</button>
             </div>
           </form>
         </div>

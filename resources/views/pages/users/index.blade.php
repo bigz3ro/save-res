@@ -15,7 +15,7 @@
                 <div class="input-group input-group-sm" style="width: 550px;">
                     <input type="text" name="keyword" class="form-control pull-right" placeholder="Search">
                     <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
             </div>
@@ -31,6 +31,8 @@
                             <th>ID</th>
                             <th>Họ tên</th>
                             <th>Email</th>
+                            <th>Role</th>
+                            <th>Doanh nghiệp</th>
                             <th>Ngày tạo</th>
                             <th class="text-right">Thao tác</th>
                           </tr>
@@ -40,11 +42,23 @@
                             <td>{{ $user->fullname }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
+                                @foreach($user->roles as $role)
+                                  {{ $role->display_name }}
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($organizations as $organization)
+                                  @if ($organization->id == $user->organization_id)
+                                  {{ $organization->name }}
+                                  @endif
+                                @endforeach
+                            </td>
+                            <td>
                               {{ date('d/m/Y', strtotime($user->created_at)) }}
                             </td>
                             <td class="text-right">
                               <a class="btn btn-sm btn-default" href="{{ route('user.getEdit', ['id' => $user->id]) }}"><i class="fa fa-pencil"></i></a>
-                              <a class="btn btn-sm btn-default" onclick="deleteUser({{ $user->id }})"><i class="fa fa-trash"></i></a>
+                              <a class="btn btn-sm btn-danger text-danger" onclick="deleteUser({{ $user->id }})"><i class="fa fa-trash"></i></a>
                             </td>
                           </tr>
                           @endforeach

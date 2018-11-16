@@ -43,7 +43,7 @@
                   <td>{{ date('d/m/Y', strtotime($organization->start_time)) }}</td>
                   <td class="text-right">
                     <a class="btn btn-sm btn-default" href="{{ route('organization.getEdit', ['id' => $organization->id]) }}"><i class="fa fa-pencil"></i></a>
-                    <a class="btn btn-sm btn-default" onclick="deleteOrganization({{ $organization->id }})"><i class="fa fa-trash"></i></a>
+                    <a class="btn btn-sm btn-danger" onclick="deleteOrganization({{ $organization->id }})"><i class="fa fa-trash"></i></a>
                   </td>
                 </tr>
                 @endforeach

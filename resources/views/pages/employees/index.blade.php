@@ -59,7 +59,7 @@
                         </td>
                         <td class="text-right">
                           <a class="btn btn-sm btn-default" href="{{ route('employee.getEdit', ['id' => $employee->id]) }}"><i class="fa fa-pencil"></i></a>
-                          <a class="btn btn-sm btn-default" onclick="deleteEmployee({{ $employee->id }})"><i class="fa fa-trash"></i></a>
+                          <a class="btn btn-sm btn-danger" onclick="deleteEmployee({{ $employee->id }})"><i class="fa fa-trash"></i></a>
                         </td>
                       </tr>
                       @endforeach

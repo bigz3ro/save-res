@@ -45,11 +45,11 @@
                       {{ $role->description }}
                     </td>
                     <td>
-                      {{ $role->created_at }}
+                      {{ date('d/m/Y', strtotime($role->created_at)) }}
                     </td>
                     <td class="text-right">
                       <a class="btn btn-sm btn-default" href="{{ route('role.getEdit', ['id' => $role->id]) }}"><i class="fa fa-pencil"></i></a>
-                      <a class="btn btn-sm btn-default" onclick="deleteRole({{ $role->id }})"><i class="fa fa-trash"></i></a>
+                      <a class="btn btn-sm btn-danger" onclick="deleteRole({{ $role->id }})"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
                 @endforeach

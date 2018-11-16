@@ -66,7 +66,7 @@ class ImageRepository
                     $constraint->aspectRatio();
                 });
             }
-            $targetFile = env('STATIC_UPLOAD_PATH', public_path('static')) . '/' . $folder . $filename;
+            $targetFile = public_path('static') . '/' . $folder . $filename;
             if ($image->save($targetFile, 100)) {
                 return [
                     'status' => 'success',
@@ -77,6 +77,7 @@ class ImageRepository
                 ];
             }
         } catch (\Exception $e) {
+            dd($e);
             \Log::error($e->getCode().' - '.$e->getMessage()."\r\n".$e->getTraceAsString());
         }
         return [

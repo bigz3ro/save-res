@@ -13,7 +13,7 @@ class UserRepository
         $user->password = bcrypt($data['password']);
         $user->fullname = $data['fullname'];
         $user->status = $data['status'];
-        $user->role = $data['role'];
+        $user->organization_id = $data['organization_id'];
         if ($data['avatar']) {
             $user->avatar = $data['avatar'];
         }
@@ -72,6 +72,9 @@ class UserRepository
         }
         if (isset($data['avatar'])) {
             $user->avatar = $data['avatar'];
+        }
+        if (isset($data['organization_id'])) {
+            $user->organization_id = $data['organization_id'];
         }
         if ($user->save()) {
             return $user;

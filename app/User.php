@@ -33,8 +33,13 @@ class User extends Authenticatable
     public function getAvatarUrl()
     {
         if ($this->avatar) {
-            return env('STATIC_HTTP_ROOT') . '/users/'  . $this->avatar;
+            return asset('static/avatars') . '/'  . $this->avatar;
         }
         return asset('images/avatar.jpg');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'role_user');
     }
 }
