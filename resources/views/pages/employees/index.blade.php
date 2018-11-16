@@ -12,7 +12,7 @@
       <div class="box-header with-border">
         <h3 class="box-title text-info">Danh sách {{ $moduleName }}</h3>
         <div class="box-tools">
-          <div class="input-group input-group-sm" style="width: 550px;">
+          <div class="input-group input-group-sm" style="width: 350px;">
             <input type="text" name="keyword" class="form-control pull-right" placeholder="Search">
             <div class="input-group-btn">
               <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>

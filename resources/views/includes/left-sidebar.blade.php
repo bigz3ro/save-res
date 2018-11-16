@@ -11,8 +11,7 @@
         </div>
 
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
-
+            <li class="header">Danh mục</li>
             <li class="treeview @if (\Request::is('user/*')) menu-open @endif">
                 <a href="{{ route('user.index') }}">
                     <i class="fa fa-user"></i> <span>Users</span>
