@@ -16,4 +16,4 @@ composer.lock
 .env
 worker.log*
 intro.doc
-.phpintel/*
+.phpintel
