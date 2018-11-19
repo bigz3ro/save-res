@@ -56,8 +56,8 @@ Route::post('user/delete', 'UserController@delete')->name('user.delete');
 // Route::post('role/delete', 'RoleController@delete')->name('role.delete')->middleware(['permission:role-delete']);
 
 Route::get('role/index', 'RoleController@index')->name('role.index');
-Route::get('role/create', 'RoleController@getCreate')->name('role.getCreate')->middleware(['permission:role-create']);
-Route::post('role/post-create', 'RoleController@postCreate')->name('role.postCreate')->middleware(['permission:role-create']);
+Route::get('role/create', 'RoleController@getCreate')->name('role.getCreate');
+Route::post('role/post-create', 'RoleController@postCreate')->name('role.postCreate');
 Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
 Route::post('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
 Route::post('role/delete', 'RoleController@delete')->name('role.delete');
