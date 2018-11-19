@@ -48,17 +48,20 @@ Route::post('user/delete', 'UserController@delete')->name('user.delete');
 // ---------------
 
 //role
-Route::get('role/index', 'RoleController@index')
-        // ->middleware(['permission:role-list|role-create|role-edit|role-delete'])
-        ->name('role.index');
+// Route::get('role/index', 'RoleController@index')
+//         ->middleware(['permission:role-list|role-create|role-edit|role-delete'])
+//         ->name('role.index');
+// Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit')->middleware(['permission:role-edit']);
+// Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit')->middleware(['permission:role-edit']);
+// Route::post('role/delete', 'RoleController@delete')->name('role.delete')->middleware(['permission:role-delete']);
 
+Route::get('role/index', 'RoleController@index')->name('role.index');
 Route::get('role/create', 'RoleController@getCreate')->name('role.getCreate')->middleware(['permission:role-create']);
 Route::post('role/post-create', 'RoleController@postCreate')->name('role.postCreate')->middleware(['permission:role-create']);
-// Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit')->middleware(['permission:role-edit']);
 Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
 Route::post('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit');
-// Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit')->middleware(['permission:role-edit']);
-Route::post('role/delete', 'RoleController@delete')->name('role.delete')->middleware(['permission:role-delete']);
+Route::post('role/delete', 'RoleController@delete')->name('role.delete');
+
 
 //Organizations
 Route::get('organization/index', 'OrganizationController@index')->name('organization.index')->middleware(['permission:organization-list|organization-create|organization-edit|organization-delete']);
