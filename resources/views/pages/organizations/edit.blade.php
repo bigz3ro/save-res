@@ -64,8 +64,8 @@
                   </div>
                 </div>
                 <div class="box-footer">
-                  <a href="{{ url()->previous() }}" class="btn btn-default">Quay lại</a>
-                  <button type="submit" class="btn btn-info pull-right">Lưu</button>
+                  <a href="{{ url()->previous() }}" class="btn btn-fixed-size btn-default pull-right">Quay lại</a>
+                  <button type="submit" class="btn btn-info btn-fixed-size">Lưu</button>
                 </div>
               </form>
             </div>

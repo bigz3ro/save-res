@@ -20,10 +20,13 @@ class OrganizationController extends Controller
 
     public function index(Request $request)
     {
-        $options = [];
+        $keyword = $request->input('keyword');
+        $options = [
+            'keyword' => $keyword
+        ];
         $organizations = $this->organizationRepo->paginate($options, 15);
 
-        return view('pages.organizations.index', compact('organizations'));
+        return view('pages.organizations.index', compact('organizations', 'keyword'));
     }
 
     public function getCreate()

@@ -12,6 +12,7 @@ class TableRepository
         $table->name = $data['name'];
         $table->location = $data['location'];
         $table->description = $data['description'];
+        $table->organization_id = $data['organization_id'];
 
         if (!$table->save()) {
             return null;
@@ -39,7 +40,10 @@ class TableRepository
             if (is_numeric($options['keyword'] )) {
                 $query->where('id', $options['keyword']);
             } else {
-                $query->where('email', 'like', '%'. $options['keyword'] . '%')->orWhere('name', 'like', '%'. $options['keyword'] . '%');
+                $query->where('name', 'like', '%'. $options['keyword'] . '%')->orWhere('description', 'like', '%'. $options['keyword'] . '%');
+            }
+            if ($options['organization_id']) {
+                $query->where('organization_id', $options['organization_id']);
             }
         }
 
@@ -62,5 +66,4 @@ class TableRepository
         }
         return false;
     }
-
 }

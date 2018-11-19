@@ -31,7 +31,7 @@ class RoleRepository
             if (is_numeric($options['keyword'] )) {
                 $query->where('id', $options['keyword']);
             } else {
-                $query->where('name', 'like', '%'. $options['keyword'] . '%')->orWhere('display_name', 'like', '%'. $options['keyword'] . '%');
+                $query->where('name', 'like', '%'. $options['keyword'] . '%')->orWhere('display_name', 'like', '%'. $options['keyword'] . '%')->orWhere('description', 'like', '%'. $options['keyword'] . '%');
             }
         }
 

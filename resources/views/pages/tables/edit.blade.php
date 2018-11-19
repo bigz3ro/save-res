@@ -55,7 +55,7 @@
               </div>
             </div>
             <div class="box-footer">
-              <button type="submit" class="btn btn-info">Lưu</button>
+              <button type="submit" class="btn btn-info btn-fixed-size">Lưu</button>
               <a href="{{ url()->previous() }}" class="btn btn-default pull-right">Quay lại</a>
             </div>
           </form>

@@ -66,8 +66,8 @@
               </div>
             </div>
             <div class="box-footer">
-              <button type="submit" class="btn btn-info">Tạo mới</button>
-              <a href="{{ route('organization.getCreate') }}" class="btn btn-default pull-right">Hủy</a>
+              <button type="submit" class="btn btn-info btn-fixed-size">Tạo mới</button>
+              <a href="{{ route('organization.getCreate') }}" class="btn btn-default btn-fixed-size pull-right">Hủy</a>
             </div>
           </form>
         </div>

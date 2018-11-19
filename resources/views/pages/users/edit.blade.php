@@ -61,7 +61,7 @@
                   <div class="form-group">
                     <label class="control-label">Role</label>
                     <div>
-                      <select class="form-control" name="role" id="role">
+                      <select class="form-control" name="roles[]" id="role">
                         @foreach($roles as $role)
                         <option value="{{ $role->id }}" @if(in_array($role->id, $userRole)) selected @endif>{{ $role->name }}</option>
                         @endforeach
@@ -98,8 +98,8 @@
             </div>
 
             <div class="box-footer">
-              <button type="submit" class="btn btn-info pull-right">Lưu</button>
-              <a href="{{ url()->previous() }}" class="btn btn-default">Quay lại</a>
+              <button type="submit" class="btn btn-info btn-fixed-size">Lưu</button>
+              <a href="{{ url()->previous() }}" class="btn btn-default btn-fixed-size pull-right">Quay lại</a>
             </div>
         </form>
       </div>

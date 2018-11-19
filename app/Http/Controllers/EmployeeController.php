@@ -7,25 +7,30 @@ use App\Repositories\EmployeeRepository;
 use App\Organization;
 use Carbon\Carbon;
 use DB;
+use Auth;
 use Validator;
 
 class EmployeeController extends Controller
 {
     public function __construct(EmployeeRepository $eplRepo)
     {
-        $moduleName = 'Nhân viên';
         $this->eplRepo = $eplRepo;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
         $moduleName = 'Nhân viên';
+        $keyword = $request->input('keyword');
         $options = [
+            'keyword' => $keyword,
+            'organization_id' => Auth::user()->organization_id
         ];
 
         $organizations = Organization::all();
         $employees = $this->eplRepo->paginate($options, 15);
-        return view('pages.employees.index', compact('moduleName', 'employees', 'organizations'));
+
+        return view('pages.employees.index', compact('moduleName', 'employees', 'organizations', 'keyword'));
     }
 
     public function getCreate(Request $request)
@@ -45,7 +50,7 @@ class EmployeeController extends Controller
             'gender' => 'required',
             'birthday' => 'required',
             'cmnd' => 'required',
-            'organization' => 'required'
+            // 'organization' => 'required'
         ];
         $messages = [
             'fullname.required' => 'Họ và tên là trường bắt buộc',
@@ -54,7 +59,7 @@ class EmployeeController extends Controller
             'phone.required' => 'Số điện thoại là trường bắt buộc',
             'gender.required' => 'Giới tính là trường bắt buộc',
             'cmnd.required' => 'Số CMND là trường bắt buộc',
-            'organization.required' => 'Doanh nghiệp là trường bắt buộc'
+            // 'organization.required' => 'Doanh nghiệp là trường bắt buộc'
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -66,10 +71,11 @@ class EmployeeController extends Controller
             'address' => $request->input('address'),
             'phone' => $request->input('phone'),
             'fullname' => $request->input('fullname'),
-            'organization_id' => intval($request->input('organization')),
+            // 'organization_id' => intval($request->input('organization')),
             'gender' => intval($request->input('gender')),
             'birthday' => $birthday,
             'cmnd' => $request->input('cmnd'),
+            'organization_id' => Auth::user()->organization_id
         ];
 
         $newEpl = $this->eplRepo->create($data);

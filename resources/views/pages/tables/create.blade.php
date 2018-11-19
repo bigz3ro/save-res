@@ -55,8 +55,8 @@
             </div>
           </form>
           <div class="box-footer">
-            <button type="submit" class="btn btn-info">Tạo mới</button>
-            <a href="{{ route('table.getCreate') }}" class="pull-right btn btn-default">Hủy</a>
+            <button type="submit" class="btn btn-info btn-fixed-size">Tạo mới</button>
+            <a href="{{ route('table.getCreate') }}" class="pull-right btn btn-default btn-fixed-size">Hủy</a>
           </div>
         </div>
       </div>

@@ -1,25 +1,31 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
 use App\Repositories\ButtonRepository;
 use Validator;
+use App\Button;
+use Auth;
 
 class ButtonController extends Controller
 {
     public function __construct(ButtonRepository $buttonRepo)
     {
         $this->buttonRepo = $buttonRepo;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
-        $options = [];
+        $keyword = $request->input("keyword");
+        $options = [
+            'keyword' => $keyword,
+            'organization_id' => Auth::user()->organization_id
+        ];
 
         $buttons = $this->buttonRepo->paginate($options, 15);
-        return view('pages.buttons.index', compact('buttons'));
+        return view('pages.buttons.index', compact('buttons', 'keyword'));
     }
 
     public function getCreate(Request $request)
@@ -38,6 +44,12 @@ class ButtonController extends Controller
             'serial_number.required' => 'Serial number là trường bắt buộc',
             'command.required' => 'Command là trường bắt buộc',
         ];
+        $serialNumber = $request->input('serial_number');
+        $exitButton = Button::where('serial_number', $serialNumber)->where('organization_id', Auth::user()->organization_id)->first();
+        if ($exitButton) {
+            return redirect()->back()->withInput()->with(['error' => 'Nút bấm đã tồn tại']);
+        }
+
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
@@ -47,6 +59,7 @@ class ButtonController extends Controller
         $data = [
             'serial_number' => $request->input('serial_number'),
             'command' => $request->input('command'),
+            'organization_id' => Auth::user()->organization_id
         ];
         $newButton = $this->buttonRepo->create($data);
         if (!$newButton) {

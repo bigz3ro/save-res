@@ -44,8 +44,11 @@ class EmployeeRepository
             if (is_numeric($options['keyword'] )) {
                 $query->where('id', $options['keyword']);
             } else {
-                $query->where('fullname', 'like', '%'. $options['keyword'] . '%')->orWhere('name', 'like', '%'. $options['keyword'] . '%');
+                $query->where('fullname', 'like', '%'. $options['keyword'] . '%')->orWhere('address', 'like', '%'. $options['keyword'] . '%')->orWhere('phone', 'like', '%'. $options['keyword'] . '%')->orWhere('cmnd', 'like', '%'. $options['keyword'] . '%');
             }
+        }
+        if ($options['organization_id']) {
+            $query->where('organization_id', $options['organization_id']);
         }
 
         return $query;

@@ -109,8 +109,8 @@
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-info">Lưu</button>
-                <a href="{{ route('employee.getCreate') }}" class="pull-right btn btn-default">Hủy</a>
+                <button type="submit" class="btn btn-info btn-fixed-size pull-right">Lưu</button>
+                <a href="{{ route('employee.getCreate') }}" class="btn btn-default btn-fixed-size">Hủy</a>
               </div>
           </form>
         </div>

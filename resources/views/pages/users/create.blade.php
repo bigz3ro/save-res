@@ -44,7 +44,7 @@
                       <div class="form-group">
                         <label class="control-label">Role <span class="text-danger">*</span></label>
                         <div>
-                          <select class="form-control" name="role" id="role">
+                          <select class="form-control" name="roles[]" id="role">
                             <option value=""></option>
                             @foreach($roles as $role)
                             <option value="{{ $role->id }}" @if (old('role') == $role->id) selected @endif>{{ $role->name }}</option>
@@ -105,8 +105,8 @@
                   </div>
                 </div>
                 <div class="box-footer">
-                  <button type="submit" class="btn btn-info">Tạo mới</button>
-                  <a href="{{ route('user.getCreate') }}" class="pull-right btn btn-default">Hủy</a>
+                  <button type="submit" class="btn btn-info btn-fixed-size">Tạo mới</button>
+                  <a href="{{ route('user.getCreate') }}" class="pull-right btn btn-default btn-fixed-size">Hủy</a>
                 </div>
 
               </form>

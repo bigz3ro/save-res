@@ -49,7 +49,14 @@ class UserRepository
             if (is_numeric($options['keyword'] )) {
                 $query->where('id', $options['keyword']);
             } else {
-                $query->where('email', 'like', '%'. $options['keyword'] . '%')->orWhere('name', 'like', '%'. $options['keyword'] . '%');
+                $query->where('email', 'like', '%'. $options['keyword'] . '%')
+                    ->orWhere('fullname', 'like', '%'. $options['keyword'] . '%')
+                    ->whereHas('organization', function ($q) use ($options) {
+                        $q->where('name', 'like', '%'.$options['keyword']. '%');
+                    })
+                    ->whereHas('roles', function ($q) use ($options) {
+                        $q->where('name', 'like', '%'.$options['keyword']. '%');
+                    });
             }
         }
 
@@ -63,9 +70,6 @@ class UserRepository
         }
         if (isset($data['email'])) {
             $user->email = $data['email'];
-        }
-        if (isset($data['role'])) {
-            $user->role = $data['role'];
         }
         if (isset($data['status'])) {
             $user->status = $data['status'];

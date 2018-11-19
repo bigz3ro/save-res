@@ -38,8 +38,8 @@ class User extends Authenticatable
         return asset('images/avatar.jpg');
     }
 
-    public function roles()
+    public function organization()
     {
-        return $this->belongsToMany('App\Role', 'role_user');
+        return $this->belongsTo('App\Organization', 'organization_id', 'id');
     }
 }

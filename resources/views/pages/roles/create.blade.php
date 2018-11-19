@@ -85,8 +85,8 @@
             <div class="box-footer">
               <div></div>
               <div>
-                <button type="submit" class="btn btn-info">Tạo mới</button>
-                <a href="{{ route('role.getCreate') }}" class="btn btn-default pull-right">Hủy</a>
+                <button type="submit" class="btn btn-fixed-size btn-info">Tạo mới</button>
+                <a href="{{ route('role.getCreate') }}" class="btn btn-default btn-fixed-size pull-right">Hủy</a>
               </div>
             </div>
           </form>

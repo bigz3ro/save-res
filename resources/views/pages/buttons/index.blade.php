@@ -12,12 +12,14 @@
       <div class="box-header with-border">
         <h3 class="box-title text-info">Danh sách nút bấm</h3>
         <div class="box-tools">
-          <div class="input-group input-group-sm" style="width: 350px;">
-            <input type="text" name="keyword" class="form-control pull-right" placeholder="Search">
-            <div class="input-group-btn">
-                <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+          <form action="{{ route('button.index') }}" method="get">
+            <div class="input-group input-group-sm" style="width: 350px;">
+              <input type="text" name="keyword" class="form-control pull-right" value="{{ $keyword }}" placeholder="Search">
+              <div class="input-group-btn">
+                  <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
       <div class="row">
@@ -54,7 +56,7 @@
       </div>
       <div class="row">
         <div class="col-md-12" class="text-right">
-          {{ $buttons->appends([])->links() }}
+          {{ $buttons->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>
     </div>

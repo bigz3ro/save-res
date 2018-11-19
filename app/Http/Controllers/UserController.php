@@ -22,11 +22,14 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $options = [];
+        $keyword = $request->keyword;
+        $options = [
+            'keyword' => $keyword
+        ];
         $users = $this->userRepo->paginate($options, 15);
         $organizations = Organization::all();
 
-        return view('pages.users.index', compact('users', 'organizations'));
+        return view('pages.users.index', compact('users', 'organizations', 'keyword'));
     }
 
     public function getCreate()
@@ -45,7 +48,7 @@ class UserController extends Controller
             'password' => 'required|min:6',
             'password' => 'required|same:confirm_password',
             'organization' => 'required',
-            'role' => 'required'
+            'roles' => 'required'
         ];
         $messages = [
             'fullname.required' => 'Họ và tên là trường bắt buộc',
@@ -84,7 +87,9 @@ class UserController extends Controller
         if (!$newUser) {
             return redirect()->back()->withInput()->with(['error' => 'Tạo người dùng không thành công']);
         }
-        $newUser->attachRole($request->input('role'));
+         foreach ($request->input('roles') as $key => $value) {
+            $newUser->attachRole($value);
+        }
         return redirect()->route('user.index')->with(['success' => 'Tạo người dùng thành công']);
     }
 
@@ -108,7 +113,7 @@ class UserController extends Controller
         $rules = [
             'fullname' => 'required',
             'email' =>'required|email',
-            'role' => 'required|integer',
+            'roles' => 'required',
             'status' => 'required',
             'organization' => 'required',
         ];
@@ -144,7 +149,6 @@ class UserController extends Controller
         $data = [
             'email' => $request->email,
             'fullname' => $request->fullname,
-            'role' => $request->role,
             'status' => $request->status,
             'avatar' => $avatar['data']['name'],
             'organization_id' => $request->organization
@@ -153,6 +157,13 @@ class UserController extends Controller
         if (!$updatedUser) {
             return redirect()->back()->with('error', 'Cập nhật không thành công');
         }
+
+
+        DB::table("role_user")->where('user_id', $updatedUser->id)->delete();
+        foreach ($request->input('roles') as $key => $value) {
+            $updatedUser->attachRole($value);
+        }
+
         return redirect()->route('user.getEdit', ['id' => $updatedUser->id])->with('success', 'Cập nhật thành công');
     }
 

@@ -53,7 +53,7 @@
                       @endif
                     </div>
                   </div>
-                  <div class="form-group">
+                  {{-- <div class="form-group">
                     <label class="control-label">Doanh nghiệp</label>
                     <div>
                       <select class="form-control" name="organization" id="organization">
@@ -69,7 +69,7 @@
                     @if($errors->has('organization'))
                       <p style="color:red">{{$errors->first('organization')}}</p>
                     @endif
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
@@ -103,8 +103,8 @@
               </div>
             </div>
             <div class="box-footer">
-              <button type="submit" class="btn btn-info">Tạo mới</button>
-              <a href="{{ route('employee.getCreate') }}" class="pull-right btn btn-default">Hủy</a>
+              <button type="submit" class="btn btn-info btn-fixed-size">Tạo mới</button>
+              <a href="{{ route('employee.getCreate') }}" class="pull-right btn-fixed-size btn btn-default">Hủy</a>
             </div>
           </form>
         </div>

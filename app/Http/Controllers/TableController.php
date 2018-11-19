@@ -7,20 +7,27 @@ use App\TableZone;
 use App\Repositories\TableRepository;
 use Validator;
 use DB;
+use Auth;
 
 class TableController extends Controller
 {
     public function __construct(TableRepository $tableRepo)
     {
         $this->tableRepo = $tableRepo;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)
     {
-        $options = [];
+        $keyword = $request->input('keyword');
+
+        $options = [
+            'keyword' => $keyword,
+            'organization_id' => Auth::user()->organization_id
+        ];
         $tables = $this->tableRepo->paginate($options, 15);
 
-        return view('pages.tables.index', compact('tables'));
+        return view('pages.tables.index', compact('tables', 'keyword'));
     }
 
     public function getCreate()
@@ -49,6 +56,7 @@ class TableController extends Controller
             'name' => $request->input('name'),
             'location' => $request->input('location'),
             'description' => $request->input('description'),
+            'organization_id' => Auth::user()->organization_id
         ];
         $newTable = $this->tableRepo->create($data);
         if (!$newTable) {

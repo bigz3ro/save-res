@@ -11,6 +11,7 @@ class ButtonRepository
         $obj = new Button;
         $obj->serial_number = $data['serial_number'];
         $obj->command = $data['command'];
+        $obj->organization_id = $data['organization_id'];
 
         if (!$obj->save()) {
             return null;
@@ -38,8 +39,11 @@ class ButtonRepository
             if (is_numeric($options['keyword'] )) {
                 $query->where('id', $options['keyword']);
             } else {
-                $query->where('serial_number', 'like', '%'. $options['keyword'] . '%')->orWhere('command', 'like', '%'. $options['keyword'] . '%');
+                $query->where('serial_number', $options['keyword'])->orWhere('command', 'like', '%'. $options['keyword'] . '%');
             }
+        }
+        if ($options['organization_id']) {
+            $query->where('organization_id', $options['organization_id']);
         }
 
         return $query;

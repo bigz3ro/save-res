@@ -18,10 +18,14 @@ class RoleController extends Controller
 
     public function index(Request $request)
     {
-        $options = [];
+        $keyword = $request->input('keyword');
+
+        $options = [
+            'keyword' => $keyword
+        ];
 
         $roles = $this->roleRepo->paginate($options, 15);
-        return view('pages.roles.index', compact('roles'));
+        return view('pages.roles.index', compact('roles', 'keyword'));
     }
 
     public function getCreate(Request $request)
