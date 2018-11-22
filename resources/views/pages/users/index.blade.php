@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-    <section class="content-header">
+    {{-- <section class="content-header">
         <h1>
             Users
         </h1>
-    </section>
+    </section> --}}
     <section class="content">
       @include('includes.message')
       <div class="box box-primary" id="app">
@@ -27,7 +27,7 @@
                   <div class="clearfix"></div>
                     <!-- /.box-header -->
                     <div class="box-body table-responsive no-padding">
-                      <table class="table table-hover">
+                      <table class="table table-hover table-bordered">
                         <tbody>
                           <tr>
                             <th>ID</th>

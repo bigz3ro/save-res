@@ -28,7 +28,7 @@ class EmployeeController extends Controller
         ];
 
         $organizations = Organization::all();
-        $employees = $this->eplRepo->paginate($options, 15);
+        $employees = $this->eplRepo->paginate($options, 10);
 
         return view('pages.employees.index', compact('moduleName', 'employees', 'organizations', 'keyword'));
     }

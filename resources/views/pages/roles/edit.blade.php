@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-  <section class="content-header">
+  {{-- <section class="content-header">
     <h1>
       Roles
     </h1>
-  </section>
+  </section> --}}
   <section class="content">
     <div class="row">
       <div class="col-xs-12">

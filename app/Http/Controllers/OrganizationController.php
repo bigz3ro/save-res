@@ -24,7 +24,7 @@ class OrganizationController extends Controller
         $options = [
             'keyword' => $keyword
         ];
-        $organizations = $this->organizationRepo->paginate($options, 15);
+        $organizations = $this->organizationRepo->paginate($options, 10);
 
         return view('pages.organizations.index', compact('organizations', 'keyword'));
     }

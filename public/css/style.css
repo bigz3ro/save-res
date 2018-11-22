@@ -13,3 +13,8 @@ label {
 .btn-fixed-size {
     width: 80px;
 }
+section.content {
+    padding: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}

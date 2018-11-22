@@ -24,7 +24,7 @@ class ButtonController extends Controller
             'organization_id' => Auth::user()->organization_id
         ];
 
-        $buttons = $this->buttonRepo->paginate($options, 15);
+        $buttons = $this->buttonRepo->paginate($options, 10);
         return view('pages.buttons.index', compact('buttons', 'keyword'));
     }
 

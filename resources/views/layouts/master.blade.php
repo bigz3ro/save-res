@@ -17,7 +17,7 @@
             @yield('content')
         </div>
         @include('includes.modal')
-        @include('includes.footer')
+        {{-- @include('includes.footer') --}}
 
     </div>
 

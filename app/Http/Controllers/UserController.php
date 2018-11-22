@@ -26,7 +26,7 @@ class UserController extends Controller
         $options = [
             'keyword' => $keyword
         ];
-        $users = $this->userRepo->paginate($options, 15);
+        $users = $this->userRepo->paginate($options, 10);
         $organizations = Organization::all();
 
         return view('pages.users.index', compact('users', 'organizations', 'keyword'));

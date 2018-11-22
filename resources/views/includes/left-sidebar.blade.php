@@ -40,7 +40,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu @if (\Request::is('role/*')) block-class @endif">
-                    <li @if (\Route::currentRouteNamed('organization.index')) class="active" @endif>
+                    <li @if (\Route::currentRouteNamed('role.index')) class="active" @endif>
                         <a href="{{ route('role.index') }}">
                             <i class="fa fa-circle-o"></i> Danh sách role
                         </a>
@@ -94,7 +94,7 @@
 
             <li class="treeview @if (\Request::is('table/*')) menu-open @endif">
                 <a href="{{ route('table.index') }}">
-                    <i class="fa fa-table"></i> <span>Vị trí bàn</span>
+                    <i class="fa fa-table"></i> <span>Quản lí bàn</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>

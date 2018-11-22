@@ -12,7 +12,7 @@
 */
 Route::get('/', function () {
     return view('pages.home');
-});
+})->middleware('auth');
 
 
 //Employee route

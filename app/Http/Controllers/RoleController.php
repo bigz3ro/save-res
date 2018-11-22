@@ -24,7 +24,7 @@ class RoleController extends Controller
             'keyword' => $keyword
         ];
 
-        $roles = $this->roleRepo->paginate($options, 15);
+        $roles = $this->roleRepo->paginate($options, 10);
         return view('pages.roles.index', compact('roles', 'keyword'));
     }
 

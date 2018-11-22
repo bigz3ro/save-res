@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TableZone;
 use App\Repositories\TableRepository;
+use App\Repositories\EmployeeRepository;
 use Validator;
 use DB;
 use Auth;
 
 class TableController extends Controller
 {
-    public function __construct(TableRepository $tableRepo)
+    public function __construct(TableRepository $tableRepo, EmployeeRepository $eplRepo)
     {
         $this->tableRepo = $tableRepo;
+        $this->eplRepo = $eplRepo;
         $this->middleware('auth');
     }
 
@@ -25,9 +27,10 @@ class TableController extends Controller
             'keyword' => $keyword,
             'organization_id' => Auth::user()->organization_id
         ];
-        $tables = $this->tableRepo->paginate($options, 15);
+        $tables = $this->tableRepo->paginate($options, 10);
+        $employees = $this->eplRepo->paginate($options, 10);
 
-        return view('pages.tables.index', compact('tables', 'keyword'));
+        return view('pages.tables.index', compact('tables', 'keyword', 'employees'));
     }
 
     public function getCreate()
