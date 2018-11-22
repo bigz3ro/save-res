@@ -35,7 +35,7 @@
                   <th>Giới tính</th>
                   <th>Phone</th>
                   <th>Ngày sinh</th>
-                  <th>Doanh nghiệp</th>
+                  <th>Trạng thái</th>
                   <th class="text-right">Thao tác</th>
                 </tr>
                 @foreach ($employees as $employee)
@@ -57,9 +57,12 @@
                     {{ date('d/m/Y', strtotime($employee->birthday)) }}
                   </td>
                   <td>
-                    {{ $employee->organization->name }}
+                    @foreach (config('employee.status_str') as $status_id => $status_name)
+                      {{ ($status_id == $employee->status) ? $status_name : '' }}
+                    @endforeach
                   </td>
                   <td class="text-right">
+                    <button class="btn btn-sm btn-default"><i class="fa fa-flag"></i></button>
                     <a class="btn btn-sm btn-default" href="{{ route('employee.getEdit', ['id' => $employee->id]) }}"><i class="fa fa-pencil"></i></a>
                     <a class="btn btn-sm btn-danger" onclick="deleteEmployee({{ $employee->id }})"><i class="fa fa-trash"></i></a>
                   </td>
@@ -71,7 +74,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12" class="text-right">
+        <div class="col-md-12 text-right">
           {{ $employees->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>

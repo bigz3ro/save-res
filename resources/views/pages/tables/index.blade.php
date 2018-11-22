@@ -46,7 +46,7 @@
                       {{ date('d/m/Y', strtotime($table->created_at)) }}
                     </td>
                     <td class="text-right">
-                      {{-- <a class="btn btn-sm btn-default" href="{{ route('employee.index', ['id' => $table->id]) }}"><i class="fa fa-book"></i></a> --}}
+                      <a class="btn btn-sm btn-info" href="{{ route('employee.index', ['id' => $table->id]) }}"><i class="fa fa-book"></i></a>
                       <a class="btn btn-sm btn-default" href="{{ route('table.getEdit', ['id' => $table->id]) }}"><i class="fa fa-pencil"></i></a>
                       <a class="btn btn-sm btn-danger" onclick="deleteTable({{ $table->id }})"><i class="fa fa-trash"></i></a>
                     </td>
