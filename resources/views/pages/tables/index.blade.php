@@ -46,8 +46,8 @@
                       {{ date('d/m/Y', strtotime($table->created_at)) }}
                     </td>
                     <td class="text-right">
+                      {{-- <a class="btn btn-sm btn-default" href="{{ route('employee.index', ['id' => $table->id]) }}"><i class="fa fa-book"></i></a> --}}
                       <a class="btn btn-sm btn-default" href="{{ route('table.getEdit', ['id' => $table->id]) }}"><i class="fa fa-pencil"></i></a>
-                      <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-list-user"><i class="fa fa-book"></i></button>
                       <a class="btn btn-sm btn-danger" onclick="deleteTable({{ $table->id }})"><i class="fa fa-trash"></i></a>
                     </td>
                   </tr>
@@ -75,7 +75,7 @@
   {{-- Delete form  --}}
 
   {{-- Modal show list user  --}}
-  <div id="modal-list-user" class="modal fade" role="dialog">
+  {{-- <div id="modal-list-user" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   {{-- Modal show list user  --}}
 
 @endsection
