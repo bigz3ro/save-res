@@ -59,7 +59,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12" class="text-right">
+        <div class="col-md-12" class="text-center">
           {{ $tables->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>

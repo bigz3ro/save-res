@@ -72,7 +72,7 @@
               </div>
           </div>
           <div class="row">
-            <div class="col-md-12" class="text-right">
+            <div class="col-md-12" class="text-center">
               {{ $users->appends(['keyword' => $keyword])->links() }}
             </div>
           </div>

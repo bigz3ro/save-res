@@ -55,7 +55,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12" class="text-right">
+        <div class="col-md-12" class="text-center">
           {{ $buttons->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>

@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12" class="text-right">
+        <div class="col-md-12" class="text-center">
           {{ $roles->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>

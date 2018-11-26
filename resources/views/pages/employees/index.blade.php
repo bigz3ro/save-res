@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 text-right">
+        <div class="col-md-12 text-center">
           {{ $employees->appends(['keyword' => $keyword])->links() }}
         </div>
       </div>
