@@ -94,3 +94,8 @@ Route::post('button/create', 'ButtonController@postCreate')->name('button.postCr
 Route::get('button/edit/{id}', 'ButtonController@getEdit')->name('button.getEdit')->middleware(['permission:button-edit']);
 Route::post('button/edit', 'ButtonController@postEdit')->name('button.postEdit')->middleware(['permission:button-edit']);
 Route::post('button/delete', 'ButtonController@delete')->name('button.delete')->middleware(['permission:button-delete']);
+
+//Demo socket
+Route::get('message/index', 'SocketController@index')->name('message.index');
+Route::get('message/chat-form', 'SocketController@getChat')->name('message.getFormChat');
+Route::post('message/send', 'SocketController@postSend')->name('message.postSend');
