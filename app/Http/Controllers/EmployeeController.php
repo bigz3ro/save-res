@@ -50,6 +50,8 @@ class EmployeeController extends Controller
             'gender' => 'required',
             'birthday' => 'required',
             'cmnd' => 'required',
+            'account' => 'required',
+            'password' => 'required'
             // 'organization' => 'required'
         ];
         $messages = [
@@ -59,6 +61,8 @@ class EmployeeController extends Controller
             'phone.required' => 'Số điện thoại là trường bắt buộc',
             'gender.required' => 'Giới tính là trường bắt buộc',
             'cmnd.required' => 'Số CMND là trường bắt buộc',
+            'account.required' => 'Tài khoản là trường bắt buộc',
+            'password.required' => 'Mật khẩu là trường bắt buộc',
             // 'organization.required' => 'Doanh nghiệp là trường bắt buộc'
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -75,7 +79,9 @@ class EmployeeController extends Controller
             'gender' => intval($request->input('gender')),
             'birthday' => $birthday,
             'cmnd' => $request->input('cmnd'),
-            'organization_id' => Auth::user()->organization_id
+            'organization_id' => Auth::user()->organization_id,
+            'account' => $request->input('account'),
+            'password' => bcrypt($request->input('password'))
         ];
 
         $newEpl = $this->eplRepo->create($data);
@@ -141,6 +147,9 @@ class EmployeeController extends Controller
             'birthday' => $birthday,
             'cmnd' => $request->input('cmnd'),
         ];
+        if ($request->input('password')) {
+            $data['password'] = bcrypt($request->input('password'));
+        }
 
         $newEpl = $this->eplRepo->update($epl, $data);
         if (!$newEpl) {

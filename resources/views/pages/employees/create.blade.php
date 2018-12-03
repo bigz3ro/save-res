@@ -31,6 +31,16 @@
                   </div>
 
                   <div class="form-group">
+                    <label class="control-label">Tài khoản <span class="text-danger">*</span></label>
+                    <div>
+                      <input type="text" name="account" value="{{ old('account') }}"" class="form-control"placeholder="Fullname">
+                      @if($errors->has('account'))
+                        <p style="color:red">{{$errors->first('account')}}</p>
+                      @endif
+                    </div>
+                  </div>
+
+                  <div class="form-group">
                     <label class="control-label">Địa chỉ <span class="text-danger">*</span></label>
                     <div>
                       <input type="text" name="address" value="{{ old('address') }}" class="form-control" placeholder="Địa chỉ">
@@ -81,6 +91,17 @@
                       @endif
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="control-label">Mật khẩu <span class="text-danger">*</span></label>
+                    <div>
+                      <input type="text" name="password" value="{{ old('password') }}"" class="form-control"placeholder="Fullname">
+                      @if($errors->has('password'))
+                        <p style="color:red">{{$errors->first('password')}}</p>
+                      @endif
+                    </div>
+                  </div>
+
                   <div class="form-group">
                     <label class="control-label">CMND <span class="text-danger">*</span></label>
                     <div>

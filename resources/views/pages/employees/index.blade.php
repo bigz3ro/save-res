@@ -31,6 +31,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Họ tên</th>
+                  <th>Tài khoản</th>
                   <th>Địa chỉ</th>
                   <th>Giới tính</th>
                   <th>Phone</th>
@@ -42,6 +43,7 @@
                 <tr>
                   <td>{{ $employee->id }}</td>
                   <td>{{ $employee->fullname }}</td>
+                  <td>{{ $employee->account }}</td>
                   <td>{{ $employee->address }}</td>
                   <td>
                     @foreach (config('user.gender_str') as $genderID => $genderName)
@@ -86,12 +88,69 @@
   </form>
 @endsection
 @section('js')
-  <script>
-    function deleteEmployee(id) {
-      $('#delete-employee #employee_id').val(id);
-      confirmModal.showConfirm('Bạn có chắc chắn muốn xóa nhân viên này không ?', 'danger', function () {
-        $('#delete-employee').submit();
-      });
-    }
-  </script>
+    {{-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> --}}
+    {{-- <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script>
+        function deleteEmployee(id) {
+          $('#delete-employee #employee_id').val(id);
+          confirmModal.showConfirm('Bạn có chắc chắn muốn xóa nhân viên này không ?', 'danger', function () {
+            $('#delete-employee').submit();
+          });
+        }
+
+        var reconnection = true;
+        var reconnectionDelay = 5000;
+        var reconnectionTry = 0;
+
+        function initClient() {
+            var socket = "";
+            var token = localStorage.getItem('token_auth');
+            if (token) {
+                connectClient(token);
+            }
+        }
+
+        function connectClient(token) {
+            var socket = "";
+            socket = io.connect('http://localhost:9000', { query: "token=" + token });
+
+            socket.on('connect', function (e) {
+                routesClient(socket);
+            });
+
+            socket.on('connect_error', function (e) {
+                reconnectionTry++;
+                console.log("Reconnection attempt #" + reconnectionTry);
+            });
+            return false;
+        }
+
+        function routesClient(socket) {
+            console.log('connected');
+
+            socket.on('test', function (e) {
+                console.log(e);
+                socket.emit("test", "pong");
+            });
+
+            socket.on('disconnect', function () {
+                socket.disconnect();
+                console.log('client disconnected');
+
+                if (reconnection === true) {
+                    setTimeout(function () {
+                        console.log('client trying reconnect');
+                        connectClient(localStorage.getItem('token_auth'));
+                    }, reconnectionDelay);
+                }
+            });
+
+            return false;
+        }
+
+        window.onload = function () {
+            initClient();
+        }
+    </script>
 @endsection

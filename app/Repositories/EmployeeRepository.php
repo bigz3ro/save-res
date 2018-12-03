@@ -15,6 +15,8 @@ class EmployeeRepository
         $employee->address = $data['address'];
         $employee->organization_id = $data['organization_id'];
         $employee->phone = $data['phone'];
+        $employee->account = $data['account'];
+        $employee->password = $data['password'];
         if ($data['cmnd']) {
             $employee->cmnd = $data['cmnd'];
         }
@@ -76,6 +78,9 @@ class EmployeeRepository
         }
         if (isset($data['organization_id'])) {
             $employee->organization_id = $data['organization_id'];
+        }
+        if (isset($data['password'])) {
+            $employee->password = $data['password'];
         }
         if ($employee->save()) {
             return $employee;

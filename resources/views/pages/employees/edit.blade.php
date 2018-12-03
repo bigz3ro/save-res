@@ -105,6 +105,15 @@
                         <p style="color:red">{{$errors->first('organization')}}</p>
                       @endif
                     </div>
+                    <div class="form-group">
+                      <label class="control-label">Mật khẩu</label>
+                      <div>
+                        <input type="text" name="password" class="form-control"placeholder="Mật khẩu mới">
+                        @if($errors->has('password'))
+                          <p style="color:red">{{$errors->first('password')}}</p>
+                        @endif
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

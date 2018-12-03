@@ -47,13 +47,13 @@ Route::post('user/edit', 'UserController@postEdit')->name('user.postEdit');
 Route::post('user/delete', 'UserController@delete')->name('user.delete');
 // ---------------
 
-//role
-// Route::get('role/index', 'RoleController@index')
-//         ->middleware(['permission:role-list|role-create|role-edit|role-delete'])
-//         ->name('role.index');
-// Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit')->middleware(['permission:role-edit']);
-// Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit')->middleware(['permission:role-edit']);
-// Route::post('role/delete', 'RoleController@delete')->name('role.delete')->middleware(['permission:role-delete']);
+// role
+Route::get('role/index', 'RoleController@index')
+        ->middleware(['permission:role-list|role-create|role-edit|role-delete'])
+        ->name('role.index');
+Route::get('role/edit/{id}', 'RoleController@getEdit')->name('role.getEdit')->middleware(['permission:role-edit']);
+Route::post('role/edit', 'RoleController@postEdit')->name('role.postEdit')->middleware(['permission:role-edit']);
+Route::post('role/delete', 'RoleController@delete')->name('role.delete')->middleware(['permission:role-delete']);
 
 Route::get('role/index', 'RoleController@index')->name('role.index');
 Route::get('role/create', 'RoleController@getCreate')->name('role.getCreate');
@@ -94,3 +94,5 @@ Route::post('button/create', 'ButtonController@postCreate')->name('button.postCr
 Route::get('button/edit/{id}', 'ButtonController@getEdit')->name('button.getEdit')->middleware(['permission:button-edit']);
 Route::post('button/edit', 'ButtonController@postEdit')->name('button.postEdit')->middleware(['permission:button-edit']);
 Route::post('button/delete', 'ButtonController@delete')->name('button.delete')->middleware(['permission:button-delete']);
+
+Route::get('socket/login', 'SocketController@create')->name('socket.login');

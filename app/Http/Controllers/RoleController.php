@@ -52,17 +52,27 @@ class RoleController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $data = [
             'name' => $request->name,
             'display_name' => $request->display_name,
             'description' => $request->description
         ];
-        $role = $this->roleRepo->create($data);
 
-        if ($role) {
-            foreach ($request->input('permission') as $key => $value) {
-                $role->attachPermission($value);
+        DB::beginTransaction();
+        try {
+            $role = $this->roleRepo->create($data);
+
+            $permissions = $request->input('permission', []);
+            if ($role && $permissions) {
+                foreach ($permissions as $key => $value) {
+                    $role->attachPermission($value);
+                }
             }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
         }
 
         return redirect()->route('role.index')->with('success','Tạo role mới thành công');
@@ -75,6 +85,7 @@ class RoleController extends Controller
         if (!$role) {
             return redirect()->route('role.index')->with('error', 'Role này không tồn tại');
         }
+
         $permissions = Permission::get();
         $rolePermissions = DB::table('permission_role')->where('permission_role.role_id', $id)->pluck('permission_id')->all();
         return view('pages.roles.edit', compact('permissions', 'role', 'rolePermissions'));
@@ -104,12 +115,22 @@ class RoleController extends Controller
             'display_name' => $request->display_name,
             'description' => $request->description
         ];
-        $role = $this->roleRepo->update($role, $data);
-        if ($role) {
-            DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
-            foreach ($request->input('permission') as $key => $value) {
-                $role->attachPermission($value);
+
+        DB::beginTransaction();
+        try {
+            $role = $this->roleRepo->update($role, $data);
+            $permissions = $request->input('permission');
+
+            if ($role && $permissions) {
+                DB::table("permission_role")->where("permission_role.role_id", $id)->delete();
+                foreach ($permissions as $key => $value) {
+                    $role->attachPermission($value);
+                }
             }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
         }
 
         return redirect()->route('role.index')->with('success','Cập nhật thành công');
@@ -123,6 +144,7 @@ class RoleController extends Controller
         if (!$role) {
             return redirect()->back()->with('error', 'Role này không tồn tại');
         }
+
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('role.index')->with('success','Xóa thành công');
     }
